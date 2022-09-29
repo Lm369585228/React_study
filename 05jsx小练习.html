@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="./js/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作dom -->
+    <script type="text/javascript" src="./js/react-dom.development.js"></script>
+    <!-- 引入babel 将jsx转js -->
+    <script type="text/javascript" src="./js/babel.min.js"></script>
+    <script type="text/babel">
+        const list = ['vue','React','angular']
+        const vdom = (
+            <div>
+                <h3>前端框架列表</h3>
+                <ul>
+                    {
+                        list.map((item,index) => {
+                            return <li key={index}>{item}</li>
+                        })
+                    }
+                </ul>
+            </div>
+        )
+        ReactDOM.render(
+            vdom,
+            document.getElementById('app')
+        )
+    </script>
+</body>
+</html>

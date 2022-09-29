@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // 创建一个类
+        class person {
+            //关键字 构造器方法
+            constructor(name,age){
+                //构造器中的this ,类的实例对象
+                this.name = name;
+                this.age = age;
+                // console.log(name,age);
+            }
+            say(){
+                console.log(`我叫${this.name},今年${this.age}岁了`)
+            }
+        }
+        //创建一个person的实例对象
+        // const p1 = new person('tom',18);
+        // const p2 = new person('sam',19);
+        // console.log(p);
+
+        //创建一个student类 继承person类
+        class student extends person {
+            constructor(name,age,sex){
+                super(name,age)
+                this.sex = sex;
+            }
+        }
+        const s1 = new student('张三',17,'男')
+        s1.say()
+        console.log(s1);
+    </script>
+</body>
+</html>

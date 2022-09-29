@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello_react</title>
+    <style>
+        .title{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="./js/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作dom -->
+    <script type="text/javascript" src="./js/react-dom.development.js"></script>
+    <!-- 引入babel 将jsx转js -->
+    <script type="text/javascript" src="./js/babel.min.js"></script>
+    <!-- 此处必须写babel,默认为js -->
+    <script type="text/babel">
+        const id = 'myid'
+        const text = 'hello_world';
+        const vdom = (
+        <div>
+            <h2 id={id} className="title">
+                <span style={{color:'pink',fontSize:'24px'}} onClick={handleClick}>{text}</span>
+            </h2>
+            <input type="text"/>
+        </div>
+        ) 
+        ReactDOM.render(vdom,document.getElementById('app'));
+        function handleClick(){
+         console.log(123);
+        }
+        /**
+         * jsx语法规则
+         * 1.定义虚拟dom时，不要带引号
+         * 2.标签中混入js表达式时要用{}
+         * 3.样式的类名指定不要用class,要用className
+         * 4.内联样式，要用style={{key:value}}的方式写，多单词要用小驼峰写法
+         * 5.虚拟dom 不能有多个根标签
+         * 6.标签必须闭合
+         * 7.
+         * （1）.标签首字母为小写开头，则转为对应的html标签，无同名标签报错
+         * （2）.若大写字母开头，则渲染对应的组件，没有定义则报错
+        */
+    </script>
+</body>
+</html>
