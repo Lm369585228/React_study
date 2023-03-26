@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作dom -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- 引入babel 将jsx转js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+        //定义类组件
+        class Demo extends React.Component{
+            showData = () => {
+                const {inputRef1} = this.refs;
+                alert(inputRef1.value)
+            }
+            showData1 = () => {
+                const {inputRef2} = this.refs;
+                alert(inputRef2.value)
+            }
+            render(){
+                return(
+                   <div>
+                        <input ref="inputRef1" type="text" placeholder="点击按钮提示数据"/>&nbsp;
+                        <button onClick={this.showData}>点击提示左侧数据</button>&nbsp;
+                        <input ref="inputRef2" onBlur={this.showData1} type="text" placeholder="失去焦点提示数据"/>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Demo/>,document.getElementById('app'))
+    </script>
+</body>
+</html>

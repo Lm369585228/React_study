@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作dom -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- 引入babel 将jsx转js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+        //定义类组件
+        class Demo extends React.Component{
+            // constructor(props) {
+            //     super(props);
+
+            //     this.inputRef = null;
+
+            //     this.setInputRef = element => {
+            //         this.inputRef = element;
+            //         // console.log(this.inputRef);
+            //     }
+            // }
+            state = {
+                isHot:true,
+            }
+            setInputRef = (c) => {
+                this.inputRef = c;
+                console.log('@',c);
+            }
+            setHot = () => {
+                const {isHot} = this.state;
+                this.setState({
+                    isHot:!isHot
+                })
+            }
+            showData = () => {
+                const {inputRef} = this;
+                console.log(inputRef);
+            }
+            render(){
+                const {isHot} = this.state;
+                return(
+                   <div>
+                        <p>今天天气很{isHot ? '炎热' : '凉爽'}</p>
+                        {/*<input ref={(c)=> {this.inputRef = c;console.log('@',c);}} type="text"/><br/>*/}
+                        <input ref={this.setInputRef} type="text"/><br/>
+                        <button onClick={this.showData}>点击提示左侧数据</button>
+                        <button onClick={this.setHot}>修改天气</button>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Demo/>,document.getElementById('app'))
+        ReactDOM.render(<Demo/>,document.getElementById('app'))
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app1"></div>
+    <div id="app2"></div>
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作dom -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- 引入babel 将jsx转js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <!-- 引入prop-types 用于对组件的标签属性进行限制 -->
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+    <script type="text/babel">
+        // class Person extends React.Component {
+        //     //构造器 写和不写的区别
+        //     constructor (props){
+        //         //构造器是否接收porps，是否传递给super,取决于：是否希望在构造器中通过this访问props
+        //         super(props)
+        //         console.log('@constructor',this.props);
+        //     }
+        //     //React 类组件身上默认属性  propsTypes = 用作定义props传参规则
+        //     static propTypes = {
+        //         name:PropTypes.string,  //小写是为了和PropTypes 的String 区分
+        //         sex:PropTypes.string.isRequired,   //设置isRequired 为必传项
+        //         age:PropTypes.number,
+        //     }
+        //     //组件设置 默认值
+        //     static defaultProps = {
+        //         name:"二狗",
+        //     }
+        //     render () {
+        //         const {name,sex,age} = this.props;
+        //         //props是只读的  
+        //         return (
+        //             <ul>
+        //                 <li>姓名：{name}</li>
+        //                 <li>性别：{sex}</li>
+        //                 <li>年龄：{age}</li>
+        //             </ul>
+        //         )
+        //     }
+        // }
+        //函数式组件
+        function Person (props) {
+            let {name,sex,age} = props;
+            return (
+                <ul>
+                    <li>姓名：{name}</li>
+                    <li>性别：{sex}</li>
+                    <li>年龄：{age}</li>
+                </ul>
+            )
+        }
+        //函数组件对props限制
+        Person.propTypes = {
+            name:PropTypes.string,  //小写是为了和PropTypes 的String 区分
+            sex:PropTypes.string.isRequired,   //设置isRequired 为必传项
+            age:PropTypes.number,
+        }
+        //函数组件给props默认值
+        Person.defaultProps = {
+            name:"二狗",
+            sex:'男'
+        }
+        //渲染组件
+        ReactDOM.render(<Person sex="女" age={18}/>,document.getElementById('app1'))
+    </script>
+</body>
+</html>

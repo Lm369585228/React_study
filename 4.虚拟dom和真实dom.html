@@ -17,9 +17,17 @@
     <!-- 此处必须写babel,默认为js -->
     <script type="text/babel"> 
         // 1.创建虚拟dom
-        const vdom = <h1>hello,react</h1>
+        const vdom = (
+            <h1 id="title">
+                <span>hello,react</span>
+                <p>hi</p>
+            </h1>
+        )
         //2.将虚拟dom渲染到页面
         ReactDOM.render(vdom,document.getElementById('test'))
+        console.log(vdom,'虚拟dom!!!')
+        // const dom = document.getElementById("test")
+        // console.log(dom,'真实dom!!!');
     </script>
 </body>
 </html>
