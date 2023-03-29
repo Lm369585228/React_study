@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命周期</title>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作dom -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- 引入babel 将jsx转js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+        //定义类组件
+        class Count extends React.Component {
+            constructor(props){
+                console.log('constructor------');
+                super(props)
+                this.state = {
+                    num:1
+                }
+            }
+        
+            sum = () => {
+                let {num} = this.state;
+                num += 1;
+                this.setState({num})
+            }
+            //组件将要挂载的钩子
+            componentWillMount () {
+                console.log('componentWillMount------');
+            }
+            //组件挂载完毕的钩子
+            componentDidMount () {
+                console.log('componentDidMount------');
+            }
+            //控制组件是否更新的阀门钩子 返回值为布尔值，默认为true
+            shouldComponentUpdate(){
+                // debugger
+                // return false
+                console.log('shouldComponentUpdate-------');
+                return true
+            }
+            //组件将要更新的钩子
+            componentWillUpdate(){
+                console.log('componentWillUpdate-------');
+            }
+            //组件更新完毕的钩子
+            componentDidUpdate(){
+                console.log('componentDidUpdate--------');
+            }
+            render() {
+                console.log('render------');
+                const {num} = this.state;
+                return (
+                    <div>
+                        <h2>当前求和为{num}</h2>
+                        <button onClick={this.sum}>点我+1</button>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Count/>,document.getElementById('app'))
+    </script>
+</body>
+</html>

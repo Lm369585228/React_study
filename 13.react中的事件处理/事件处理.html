@@ -24,11 +24,15 @@
             showData = () => {
                 console.log(this.myRef.current.value);
             }
+            showData2 = (e) => {
+                console.log(e.target.value);
+            }
             render(){
                 return(
                    <div>
                         <input ref={this.myRef} type="text" placeholder="点击按钮提示数据"/>&nbsp;
                         <button onClick={this.showData}>点击提示左侧数据</button>
+                        <input onBlur={this.showData2} type="text" placeholder="点击按钮提示数据"/>&nbsp;
                     </div>
                 )
             }

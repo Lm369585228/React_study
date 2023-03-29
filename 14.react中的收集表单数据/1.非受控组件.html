@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件处理</title>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作dom -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- 引入babel 将jsx转js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+        //定义类组件
+        class Login extends React.Component {
+            handleSubmit= (e) => {
+                const {useNameRef,passwordRef} = this;
+                //阻止表单默认提交事件
+                e.preventDefault()
+                alert(`您输入的用户名是${useNameRef.value},密码为${passwordRef.value}`)
+            }
+            render(){
+                return (
+                    <form action="http://www.atguigu.com" onSubmit={this.handleSubmit}>
+                        用户名:<input ref={c => this.useNameRef = c} type="text" name="useName"></input><br/><br/>
+                        密码:<input ref={c => this.passwordRef = c} type="possword" name="passWord"></input><br/><br/>
+                        <button>登录</button>
+                    </form>
+                )
+            }
+        }
+
+        ReactDOM.render(<Login/>,document.getElementById('app'))
+    </script>
+</body>
+</html>
