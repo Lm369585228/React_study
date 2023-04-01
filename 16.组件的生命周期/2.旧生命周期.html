@@ -15,6 +15,21 @@
     <!-- 引入babel 将jsx转js -->
     <script type="text/javascript" src="../js/babel.min.js"></script>
     <script type="text/babel">
+        /**
+         * 1.初始化阶段钩子
+         *      constructor() 构造函数
+         *      componentWillMount()   组件将要挂载钩子
+         *      render()
+         *      componentDidMount()   组件挂载完毕钩子
+         * 2.更新阶段钩子 由组件内部setState()或由父组件render()触发
+         *      componentWillReceiveProps()  props将要更新钩子
+         *      shouldComponentUpdate()   //是否允许组件更新钩子
+         *      componentWillUpdate()  //组件将要更新钩子
+         *      render()   //渲染函数
+         *      componentDidUpdate()  //组件更新完毕钩子
+         * 3.卸载组件钩子  由ReactDOM.unmountComponentAtNode(document.getElementById(''))触发
+         *      componentWillUnmount()  //组件将要卸载钩子
+        */
         //定义类组件
         class Count extends React.Component {
             constructor(props){

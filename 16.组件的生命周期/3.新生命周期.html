@@ -9,11 +9,11 @@
 <body>
     <div id="app"></div>
     <!-- 引入react核心库 -->
-    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../jsNew/react.development.js"></script>
     <!-- 引入react-dom 用于支持react操作dom -->
-    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../jsNew/react-dom.development.js"></script>
     <!-- 引入babel 将jsx转js -->
-    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/javascript" src="../jsNew/babel.min.js"></script>
     <script type="text/babel">
         //定义类组件
         class Count extends React.Component {
@@ -30,6 +30,13 @@
                 num += 1;
                 this.setState({num})
             }
+            //卸载组件回调
+            del = () => {
+                ReactDOM.unmountComponentAtNode(document.getElementById('app'))
+            }
+            update = () => {
+                this.forceUpdate()
+            }
             //组件将要挂载的钩子
             componentWillMount () {
                 console.log('componentWillMount------');
@@ -37,6 +44,10 @@
             //组件挂载完毕的钩子
             componentDidMount () {
                 console.log('componentDidMount------');
+            }
+            //组件将要卸载钩子
+            componentWillUnmount(){
+                console.log('componentWillUnmount------');
             }
             //控制组件是否更新的阀门钩子 返回值为布尔值，默认为true
             shouldComponentUpdate(){
@@ -53,6 +64,7 @@
             componentDidUpdate(){
                 console.log('componentDidUpdate--------');
             }
+            //渲染函数
             render() {
                 console.log('render------');
                 const {num} = this.state;
@@ -60,12 +72,77 @@
                     <div>
                         <h2>当前求和为{num}</h2>
                         <button onClick={this.sum}>点我+1</button>
+                        <button onClick={this.del}>卸载组件</button>
+                        <button onClick={this.update}>不更改状态中的数据强制更新</button>
                     </div>
                 )
             }
         }
 
-        ReactDOM.render(<Count/>,document.getElementById('app'))
+        class A extends React.Component {
+            state = {
+                carName:"奔驰"
+            }
+            changeCar = () => {
+                this.setState({carName:'宝马'})
+            }
+            render(){
+                return (
+                    <div>
+                        <h2>我是父组件</h2>
+                        <button onClick={this.changeCar}>换车</button>
+                       <B carName={this.state.carName}/> 
+                    </div>
+                )
+            }
+        }
+        class B extends React.Component {
+            constructor(props){
+                super(props)
+                console.log('constructor-----');
+            }
+            state = {
+                num:0
+            }
+            componentDidMount(){
+                console.log('componentDidMount-----');
+            }
+            //获取props派生的状态数据钩子  --了解即可
+            //必须是静态的
+            //必须有返回值（Null或者state对象）
+            //如果返回的是state对象，里面的将会对原有的state进行覆盖，并且不能修改【因为初始化，更新都会经过这个函数】
+            //给组件传递的参数，可以作为该方法的参数传递过来。因此可以让该参数作为state。
+            //也可以以props和state作为参数进行传递
+            static getDerivedStateFromProps(){
+                console.log('getDerivedStateFromProps-----');
+                return null
+            }
+            //更新的时候调用，在render和componentDidUpdate之间
+            //必须返回一个快照
+            getSnapshotBeforeUpdate(){
+                console.log('getSnapshotBeforeUpdate-----');
+                return null
+            }    
+            shouldComponentUpdate() {
+                console.log('shouldComponentUpdate------');
+                return true
+            }
+           
+            componentDidUpdate(preProps,preState,snpshotValue){
+                console.log('componentDidUpdate-------',preProps,preState,snpshotValue);
+            }
+            render(){
+                console.log('render------');
+                const {carName} = this.props;
+                return (
+                    <div>
+                       <h2>我是子组件</h2>
+                       <h2>爸爸给的{carName}</h2>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<A/>,document.getElementById('app'))
     </script>
 </body>
 </html>
