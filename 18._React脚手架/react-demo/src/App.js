@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          廖敏的 第一个React项目
+          Learn React
         </a>
       </header>
     </div>
