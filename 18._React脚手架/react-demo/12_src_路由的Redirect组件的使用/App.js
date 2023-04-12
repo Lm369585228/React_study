@@ -29,6 +29,7 @@ export default class App extends Component {
                 <Switch>
                   <Route path='/about' component={About}/>
                   <Route path='/home' component={Home}/>
+                  {/* 一般Redirect写在所有路由的最下方，当前路由都无法匹配时匹配Redirect路径页面*/}
                   <Redirect to="/about" />
                 </Switch>
               </div>
