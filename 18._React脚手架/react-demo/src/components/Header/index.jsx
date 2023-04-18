@@ -10,6 +10,7 @@ class Header extends Component {
     forward = () => {
         this.props.history.goForward()
     }
+    //
     go = () => {
         this.props.history.go(-2)
     }
