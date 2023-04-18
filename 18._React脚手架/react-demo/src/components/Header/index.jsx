@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import {withRouter} from 'react-router-dom'
 
 class Header extends Component {
+    //前进
     back = () => {
         this.props.history.goBack()
     }
+    //回退
     forward = () => {
         this.props.history.goForward()
     }
